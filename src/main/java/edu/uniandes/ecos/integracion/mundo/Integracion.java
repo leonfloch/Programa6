@@ -75,10 +75,11 @@ public class Integracion {
         double resultado = 0;
         int numSeg = 10; 
         double w = valorX / numSeg;
+        double col5 = calcularColum5(dof);
         
         for (int i=0; i <= numSeg; i++) {            
             double xi = i * w;
-            double distribucion = this.calcularDistribucion(dof, xi);
+            double distribucion = this.calcularDistribucion(dof, xi, col5);
 
             int multiplier = Cal.multiplicativo(i);
             resultado += this.calcularTemr(multiplier, w, distribucion);            
@@ -93,16 +94,15 @@ public class Integracion {
      * @return 
      */
     //@METODO
-    private double calcularDistribucion(double dof, double xi) {
+    private double calcularDistribucion(double dof, double xi, double col5) {
         double col2 = 1 + (Math.pow(xi, 2) / dof);    
         double potDof = (dof + (double)1) / (double)2;
         double col3 = Math.pow(col2, -potDof);        
         double facDof2 = (Cal.factorial((dof / (double)2) - (double)1)) * Math.sqrt(Math.PI);
         double numerador = (Cal.factorial(potDof - (double)1));
         
-        double col4 = numerador /                 
-                (Math.pow((dof * Math.PI), (double)1 / (double)2) * facDof2);            
-         return col4 * col3;
+        
+         return col5 * col3;
     }
     
     /**
@@ -116,6 +116,59 @@ public class Integracion {
     private double calcularTemr(double multiplier, double w, 
             double distribucion) {
         return (w / 3) * multiplier * distribucion;
+    }
+    
+    /**
+     * Se encarga de calcular 
+     * @param dof
+     * @return calculo 
+     */
+    //@METODO
+    public double calcularColum5(double dof) {
+        double result = 0;
+        
+        double num = (dof + 1) / 2;
+        double numerador = factorialGamma(num);
+        
+        double denominador = (Math.sqrt(dof * Math.PI)) * factorialGamma(dof/2);        
+        result = numerador / denominador;
+                
+        return result;
+    }
+    
+    /**
+     * realiza el calculo del factorial teniendo en cuenta la
+     * funcion gamma
+     * @param valor valor a calcular
+     * @return factorial del valor 
+     */
+    //@METODO
+    public double factorialGamma(double valor) {
+        double result = 0;
+        double cal= valor-1;
+        //Se identifica si el numero a evaluar es entero o fraccion.
+        boolean esEntero = cal % 2 == 0;        
+        if (!esEntero) {
+            result = factorialFraccion(cal);
+            result *= 0.5;
+            result *= Math.sqrt(Math.PI);
+        } else {
+            result = Cal.factorial(cal);
+        }
+        return result;
+    }
+    
+    /**
+     * calcula el factorial para un fraccionario
+     * @param valor valor a calcular
+     * @return factorial de la fraccion 
+     */
+    //@METODO
+    public double  factorialFraccion(double valor) {
+        if (valor == 1.5) {
+            return valor;
+        }
+        return valor * factorialFraccion(valor - 1);
     }
     
 }
