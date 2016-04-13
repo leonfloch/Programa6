@@ -1,6 +1,7 @@
 
 import edu.uniandes.ecos.integracion.mundo.Cal;
 import edu.uniandes.ecos.integracion.mundo.Integracion;
+import edu.uniandes.ecos.integracion.mundo.IntegradorX;
 import edu.uniandes.ecos.integracion.mundo.Resultado;
 import java.math.BigDecimal;
 import java.util.Iterator;
@@ -11,7 +12,7 @@ import static spark.Spark.get;
 import static spark.SparkBase.port;
 
 /**
- * Calse de presentacion donde se muestran los resultados.
+ * Clase de presentacion donde se muestran los resultados.
  *
  * @author Leonardo Valbuena Calderon
  * @date 25/03/2016
@@ -25,8 +26,8 @@ public class InterfazIntegracion {
      */
     //@METODO
     public static void main(String[] args) {        
-        Integracion integracion = new Integracion();        
-        mostrarResultados(integracion.iniciarCalculos());
+        IntegradorX integradorX = new IntegradorX();
+        mostrarResultados(integradorX.encontrarX());
     }
 
     /**
@@ -57,20 +58,20 @@ public class InterfazIntegracion {
         html.append("<th>Actual Value</th>");
         html.append("</tr>");
         html.append("<tr>");
-        html.append("<th>X</th>");
-        html.append("<th>Dof</th>");
         html.append("<th>P</th>");
-        html.append("<th></th>");        
+        html.append("<th>Dof</th>");
+        html.append("<th>X</th>");
+        html.append("<th></th>");
         html.append("</tr>");
 
         Iterator iterador = result.iterator();        
         while (iterador.hasNext()) {
             Resultado res = (Resultado) iterador.next();
             html.append("<tr>");
-            html.append("<td> 0 to x= " + res.getX() + "</td>");
-            html.append("<td>" + res.getDof() + "</td>");
             html.append("<td>" + res.getP() + "</td>");
-            html.append("<td>" + res.getpActual() + "</td>");            
+            html.append("<td>" + res.getDof() + "</td>");
+            html.append("<td>" + res.getX() + "</td>");
+            html.append("<td>" + res.getxActual() + "</td>");            
             html.append("</tr>");
         }
         html.append("</table>");

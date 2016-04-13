@@ -13,6 +13,11 @@ public class Resultado {
     private String x;
     
     /**
+     * 
+     */
+    private double xActual;
+    
+    /**
      * representa los grados de libertad
      */
     private double dof;
@@ -29,10 +34,23 @@ public class Resultado {
     
     
 
-    
+    /**
+     * Constructor para dar soporte al calculo de x
+     * @param p
+     * @param dof
+     * @param x
+     * @param xActual 
+     */
+    //@METODO
+    public Resultado(double p, double dof, String x, double xActual) {
+        this.p = p;
+        this.dof = dof;
+        this.x = x;
+        this.xActual = xActual;
+    }
 
     /**
-     * 
+     * Constructor para dar soporte al calculo de p
      * @param x
      * @param dof
      * @param p
@@ -118,6 +136,24 @@ public class Resultado {
     //@METODO
     public void setpActual(double pActual) {
         this.pActual = pActual;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    //@METODO
+    public double getxActual() {
+        return xActual;
+    }
+
+    /**
+     * 
+     * @param xActual 
+     */
+    //@METODO
+    public void setxActual(double xActual) {
+        this.xActual = xActual;
     }
 
     

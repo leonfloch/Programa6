@@ -147,7 +147,7 @@ public class Integracion {
         double result = 0;
         double cal= valor-1;
         //Se identifica si el numero a evaluar es entero o fraccion.
-        boolean esEntero = cal % 2 == 0;        
+        boolean esEntero = cal % 1 == 0;        
         if (!esEntero) {
             result = factorialFraccion(cal);
             result *= 0.5;
