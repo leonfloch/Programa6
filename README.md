@@ -21,15 +21,15 @@ Para correr la aplicación: [localhost:5000](http://localhost:5000/)
 
 ## Correr en Heroku
 
-[programa5-10934.herokuapp.com](https://programa5-10934.herokuapp.com)
+[programa6-13228.herokuapp.com](https://programa6-13228.herokuapp.com)
 
 
 
 ## Clonar desde Heroku
 
 ```sh
-$ heroku git:clone -a programa5-10934
-$ cd programa5-10934
+$ heroku git:clone -a programa6-13228
+$ cd programa6-13228
 ```
 
 ## Documentación
