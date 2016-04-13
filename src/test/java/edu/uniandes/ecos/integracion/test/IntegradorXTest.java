@@ -2,6 +2,7 @@ package edu.uniandes.ecos.integracion.test;
 
 import edu.uniandes.ecos.integracion.mundo.IntegradorX;
 import static edu.uniandes.ecos.integracion.mundo.IntegradorX.RANGO_ERROR;
+import static junit.framework.Assert.assertTrue;
 import junit.framework.TestCase;
 import org.junit.*;
 
@@ -32,9 +33,7 @@ public class IntegradorXTest extends TestCase {
     //@METODO
     public void test1() {
         double result = integradorX.buscarX(0.20, 1.0, 6);
-        
-        double rango = result - (double)0.55338;
-        assertTrue((Math.abs(rango) < RANGO_ERROR));
+        assertTrue(0.55338 <= result && result <= 0.55350);
     }
     
     /**
@@ -54,7 +53,7 @@ public class IntegradorXTest extends TestCase {
     //@METODO
     public void test3() {
         double result = integradorX.buscarX(0.495, 1.0, 4);
-        assertEquals(4.60409, result);
+        assertTrue(4.6010 <= result && result <= 4.60940);        
     }
     
     
